@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlBrewer.UWP.ValidationSample", "XamlBrewer.UWP.ValidationSample\XamlBrewer.UWP.ValidationSample.csproj", "{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|ARM.ActiveCfg = Debug|ARM
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|ARM.Build.0 = Debug|ARM
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|ARM.Deploy.0 = Debug|ARM
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|x64.ActiveCfg = Debug|x64
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|x64.Build.0 = Debug|x64
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|x64.Deploy.0 = Debug|x64
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|x86.ActiveCfg = Debug|x86
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|x86.Build.0 = Debug|x86
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Debug|x86.Deploy.0 = Debug|x86
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|ARM.ActiveCfg = Release|ARM
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|ARM.Build.0 = Release|ARM
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|ARM.Deploy.0 = Release|ARM
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|x64.ActiveCfg = Release|x64
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|x64.Build.0 = Release|x64
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|x64.Deploy.0 = Release|x64
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|x86.ActiveCfg = Release|x86
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|x86.Build.0 = Release|x86
+		{3FC3865D-320E-42C3-AFA7-D2A0FF31F697}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D16EF964-3FB8-4164-A59F-D00DF94A9FCF}
+	EndGlobalSection
+EndGlobal

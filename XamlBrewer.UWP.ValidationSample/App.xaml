@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="XamlBrewer.UWP.ValidationSample.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XamlBrewer.UWP.ValidationSample"
+    RequestedTheme="Light">
+
+</Application>
