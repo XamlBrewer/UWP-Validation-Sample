@@ -47,8 +47,7 @@ namespace Template10.Controls.Validation
 
         public bool Remove(KeyValuePair<K, V> item)
         {
-            V currentValue;
-            if (_dictionary.TryGetValue(item.Key, out currentValue) &&
+            if (_dictionary.TryGetValue(item.Key, out V currentValue) &&
                 Equals(item.Value, currentValue) && _dictionary.Remove(item.Key))
             {
                 RaiseMapChanged(CollectionChange.ItemRemoved, item.Key);
