@@ -5,7 +5,7 @@
     <!-- Palette by https://coolors.co/542344-bfd1e5-ebf5ee-d8bfaa-808080 -->
     
     <!-- Default Accent Color -->
-    <Color x:Key="DefaultAccentColor">#ffd8bfaa</Color>
+    <Color x:Key="DefaultAccentColor">#ffbfd1e5</Color>
 
     <!-- General Purpose -->
     <SolidColorBrush x:Key="TenPercentDarkerBrush"

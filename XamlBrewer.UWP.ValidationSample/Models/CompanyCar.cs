@@ -12,6 +12,8 @@ namespace XamlBrewer.UWP.ValidationSample.Models
 
         public string Type { get; set; }
 
+        public string Body { get; set; }
+
         public string PowerUnit { get; set; }
 
         public DateTime ProductionDate { get; set; }
@@ -23,5 +25,8 @@ namespace XamlBrewer.UWP.ValidationSample.Models
         public double Emission { get; set; }
 
         public string Driver { get; set; }
+
+        // This is soooo not MVVM.
+        public string BodyIcon => Mvvm.Services.Icon.GetIcon(Body + "Icon");
     }
 }

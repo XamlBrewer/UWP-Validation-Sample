@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
 using XamlBrewer.UWP.ValidationSample.ViewModels;
 
@@ -34,9 +30,11 @@ namespace XamlBrewer.Uwp.ValidationSample
 
         private async void EditButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var cc = new CompanyCar(ViewModel.SelectedCompanyCar);
-            cc.Validate();
-            EditDialog.DataContext = cc;
+            var companyCarViewModel = new CompanyCar(ViewModel.SelectedCompanyCar);
+            companyCarViewModel.Validate();
+            EditDialog.DataContext = companyCarViewModel;
+            EditDialog.MinWidth = 600;
+            EditDialog.MaxWidth = 600;
             var result = await EditDialog.ShowAsync();
         }
     }
