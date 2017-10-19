@@ -16,6 +16,11 @@ namespace XamlBrewer.Uwp.ValidationSample
 
         MainPageViewModel ViewModel => (MainPageViewModel)DataContext;
 
+        public string FormatDate(DateTime date)
+        {
+            return "hello";
+        }
+
         private void Catalog_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count <= 0)
@@ -31,11 +36,18 @@ namespace XamlBrewer.Uwp.ValidationSample
         private async void EditButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             var companyCarViewModel = new CompanyCar(ViewModel.SelectedCompanyCar);
+            companyCarViewModel.PropertyChanged += (obj, ev) => EditDialog.IsPrimaryButtonEnabled = companyCarViewModel.IsValid;
             companyCarViewModel.Validate();
             EditDialog.DataContext = companyCarViewModel;
-            EditDialog.MinWidth = 600;
-            EditDialog.MaxWidth = 600;
+            //EditDialog.MinWidth = 700;
+            //EditDialog.MaxWidth = 700;
+            //EditDialog.Width = 700;
             var result = await EditDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                // Update model
+                companyCarViewModel.Update(ViewModel.SelectedCompanyCar);
+            }
         }
     }
 }

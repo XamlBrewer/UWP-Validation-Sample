@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Template10.Validation;
+using XamlBrewer.UWP.ValidationSample.Models;
 
 namespace XamlBrewer.UWP.ValidationSample.ViewModels
 {
@@ -48,6 +49,19 @@ namespace XamlBrewer.UWP.ValidationSample.ViewModels
             {
                 c.Properties[nameof(c.Mileage)].Errors.Add("Turning back the mileage is illegal.");
             }
+        }
+
+        internal void Update(Models.CompanyCar model)
+        {
+            model.Brand = this.Brand;
+            model.Type = this.Type;
+            model.Body = this.Body;
+            model.ProductionDate = this.ProductionDate;
+            model.FirstUseDate = this.FirstUseDate;
+            model.PowerUnit = this.PowerUnit;
+            model.Emission = this.Emission;
+            model.Mileage = this.Mileage;
+            model.Driver = this.Driver;
         }
 
         public string Brand { get { return Read<string>(); } set { Write(value); } }

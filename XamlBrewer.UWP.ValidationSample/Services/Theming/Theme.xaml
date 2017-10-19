@@ -1,5 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- !!! -->
+    <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
+    
     <!-- Theme Resources -->
 
     <!-- Palette by https://coolors.co/542344-bfd1e5-ebf5ee-d8bfaa-808080 -->

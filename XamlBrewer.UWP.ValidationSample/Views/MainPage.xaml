@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:XamlBrewer.UWP.ValidationSample.Models"
       xmlns:mvvm="using:Mvvm"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -13,6 +14,7 @@
                                            TrueValue="Visible"
                                            FalseValue="Collapsed" />
         <mvvm:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <mvvm:StringFormatConverter x:Key="StringFormatConverter" />
     </Page.Resources>
 
     <Grid Background="{StaticResource PageBackgroundBrush}"
@@ -104,7 +106,7 @@
                                          StrokeThickness="2"
                                          Fill="{StaticResource PageBackgroundBrush}"
                                          Stroke="{StaticResource SplitViewBackgroundBrush}" />
-                                <Path Data="{x:Bind BodyIcon}"
+                                <Path Data="{x:Bind BodyIcon, Mode=OneWay}"
                                       Fill="Black"
                                       Stretch="Uniform"
                                       Height="40"
@@ -119,12 +121,12 @@
                                        HorizontalAlignment="Left"
                                        Margin="8 4"
                                        Grid.Column="1">
-                                <Run Text="{x:Bind Brand}" />
-                                <Run Text="{x:Bind Type}" />
+                                <Run Text="{x:Bind Brand, Mode=OneWay}" />
+                                <Run Text="{x:Bind Type, Mode=OneWay}" />
                                 <LineBreak />
                                 <LineBreak />
                                 <Run FontWeight="Normal"
-                                     Text="{x:Bind Driver}" />
+                                     Text="{x:Bind Driver, Mode=OneWay}" />
                             </TextBlock>
                         </Grid>
                     </DataTemplate>
@@ -144,23 +146,96 @@
                 <!-- Title and Commands -->
                 <TextBlock FontSize="32"
                            FontWeight="SemiBold">
-                    <Run Text="{Binding Brand}" />
-                    <Run Text="{Binding Type}" />
+                    <Run Text="{Binding Brand, Mode=OneWay}" />
+                    <Run Text="{Binding Type, Mode=OneWay}" />
                 </TextBlock>
                 <AppBarButton Icon="Edit"
                               Click="EditButton_Click"
                               HorizontalAlignment="Right"
                               Label="Edit"
                               IsCompact="False" />
+                <Grid  Grid.Row="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="180" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Company Car Details"
+                               Foreground="{StaticResource HamburgerForegroundBrush}"
+                               FontSize="24"
+                               Margin="0 0 0 10"
+                               Grid.ColumnSpan="3" />
+                    <controls:HeaderedTextBlock Header="Brand"
+                                                Text="{Binding Brand, Mode=OneWay}"
+                                                Margin="0 0 10 10"
+                                                Grid.Row="1"
+                                                Grid.Column="0" />
+                    <controls:HeaderedTextBlock Header="Type"
+                                                Text="{Binding Type, Mode=OneWay}"
+                                                Margin="5 0 5 10"
+                                                Grid.Row="1"
+                                                Grid.Column="1" />
+                    <controls:HeaderedTextBlock Header="Body"
+                                                Text="{Binding Body, Mode=OneWay}"
+                                                Margin="10 0 0 10"
+                                                Grid.Row="1"
+                                                Grid.Column="2" />
+                    <controls:HeaderedTextBlock Header="Production date"
+                                                Text="{Binding ProductionDate, Converter= {StaticResource StringFormatConverter}, ConverterParameter='{}{0:MMMM dd, yyyy}', Mode =OneWay}"
+                                                Margin="0 0 10 10"
+                                                Grid.Row="2"
+                                                Grid.Column="0" />
+                    <controls:HeaderedTextBlock Header="Date of first use"
+                                                Text="{Binding FirstUseDate, Converter= {StaticResource StringFormatConverter}, ConverterParameter='{}{0:MMMM dd, yyyy}', Mode=OneWay}"
+                                                IsEnabled="False"
+                                                Grid.Row="2"
+                                                Margin="5 0 5 10"
+                                                Width="170"
+                                                Grid.Column="1"
+                                                FontFamily="Segoe UI" />
+                    <controls:HeaderedTextBlock Header="Power unit"
+                                                Text="{Binding PowerUnit, Mode=OneWay}"
+                                                Margin="0 0 10 10"
+                                                Grid.Row="3"
+                                                Grid.Column="0" />
+                    <controls:HeaderedTextBlock Header="Emission"
+                                                Text="{Binding Emission, Mode=OneWay}"
+                                                Margin="5 0 5 10"
+                                                Grid.Row="3"
+                                                Grid.Column="1" />
+                    <controls:HeaderedTextBlock Header="Mileage"
+                                                Text="{Binding Mileage, Mode=OneWay}"
+                                                Margin="0 0 10 10"
+                                                Grid.Row="4"
+                                                Grid.Column="0" />
+                    <controls:HeaderedTextBlock Header="Driver"
+                                                Text="{Binding Driver, Mode=OneWay}"
+                                                Margin="10 0 0 10"
+                                                Grid.Row="4"
+                                                Grid.Column="2" />
+                </Grid>
             </Grid>
         </Grid>
 
         <!-- Edit Dialog -->
+        <!-- Make sure to have defined ContentDialogMaxWidth high enough. -->
         <ContentDialog x:Name="EditDialog"
                        PrimaryButtonText="Save"
                        SecondaryButtonText="Cancel"
-                       Background="{StaticResource PageBackgroundBrush}">
-            <Grid MinWidth="540">
+                       Background="{StaticResource PageBackgroundBrush}"
+                       FontFamily="Segoe UI">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -175,33 +250,38 @@
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="180" />
                 </Grid.ColumnDefinitions>
+                <TextBlock Text="Company Car Editor"
+                           Foreground="{StaticResource HamburgerForegroundBrush}"
+                           FontSize="24"
+                           Margin="0 0 0 10"
+                           Grid.ColumnSpan="3" />
                 <TextBox Header="Brand"
                          Text="{Binding Brand, Mode=TwoWay}"
                          Margin="0 0 10 10"
-                         Grid.Row="0"
+                         Grid.Row="1"
                          Grid.Column="0" />
                 <TextBox Header="Type"
                          Text="{Binding Type, Mode=TwoWay}"
                          Margin="5 0 5 10"
-                         Grid.Row="0"
+                         Grid.Row="1"
                          Grid.Column="1" />
                 <ComboBox Header="Body"
                           ItemsSource="{Binding BodyTypes}"
                           SelectedItem="{Binding Body, Mode=TwoWay}"
                           Margin="10 0 0 10"
                           Width="170"
-                          Grid.Row="0"
+                          Grid.Row="1"
                           Grid.Column="2" />
                 <CalendarDatePicker Header="Production date"
                                     Date="{Binding ProductionDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
                                     Margin="0 0 10 10"
                                     Width="170"
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     Grid.Column="0"
                                     DateFormat="{}{month.full} {day.integer}, {year.full}" />
                 <CalendarDatePicker Header="Date of first use"
                                     Date="{Binding FirstUseDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     Margin="5 0 5 10"
                                     Width="170"
                                     Grid.Column="1"
@@ -211,22 +291,22 @@
                           SelectedItem="{Binding PowerUnit, Mode=TwoWay}"
                           Margin="0 0 10 10"
                           Width="170"
-                          Grid.Row="2"
+                          Grid.Row="3"
                           Grid.Column="0" />
                 <TextBox Header="Emission"
                          Text="{Binding Emission, Mode=TwoWay}"
                          Margin="5 0 5 10"
-                         Grid.Row="2"
+                         Grid.Row="3"
                          Grid.Column="1" />
                 <TextBox Header="Mileage"
                          Text="{Binding Mileage, Mode=TwoWay}"
                          Margin="0 0 10 10"
-                         Grid.Row="3"
+                         Grid.Row="4"
                          Grid.Column="0" />
                 <TextBox Header="Driver"
                          Text="{Binding Driver, Mode=TwoWay}"
                          Margin="10 0 0 10"
-                         Grid.Row="3"
+                         Grid.Row="4"
                          Grid.Column="2" />
                 <Image Source="ms-appx:///Assets/car.png"
                        Opacity=".2"
@@ -234,7 +314,7 @@
                        HorizontalAlignment="Right"
                        Stretch="Uniform"
                        Margin="10 0 0 10"
-                       Grid.Row="1"
+                       Grid.Row="2"
                        Grid.RowSpan="2"
                        Grid.Column="2" />
                 <ToggleSwitch IsOn="{Binding IsDirty, Mode=OneWay}"
@@ -243,7 +323,7 @@
                               OnContent="True"
                               OffContent="False"
                               Margin="0 0 10 10"
-                              Grid.Row="4"
+                              Grid.Row="5"
                               Grid.Column="0" />
                 <ToggleSwitch IsOn="{Binding IsValid, Mode=OneWay}"
                               IsEnabled="False"
@@ -251,10 +331,10 @@
                               OnContent="True"
                               OffContent="False"
                               Margin="5 0 5 10"
-                              Grid.Row="4"
+                              Grid.Row="5"
                               Grid.Column="1" />
                 <Grid Background="{StaticResource HamburgerForegroundBrush}"
-                      Grid.Row="5"
+                      Grid.Row="6"
                       Grid.Column="0"
                       Grid.ColumnSpan="3">
                     <ItemsControl ItemsSource="{Binding Errors, Mode=OneWay}">
