@@ -4,4 +4,4 @@ A UWP app demonstrating (View)Model validation using the Template10 core Validat
 * Comparing two (or more) fields.
 * Comparing new value to original value.
 
-![Screenshot](Assets/Screenshot.png?raw=true "Message")
+![Screenshot](Assets/Screenshot.png?raw=true "Edit Form")
