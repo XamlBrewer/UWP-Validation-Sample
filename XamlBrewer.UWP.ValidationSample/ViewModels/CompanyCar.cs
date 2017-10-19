@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Template10.Validation;
-using XamlBrewer.UWP.ValidationSample.Models;
 
 namespace XamlBrewer.UWP.ValidationSample.ViewModels
 {
@@ -37,14 +35,14 @@ namespace XamlBrewer.UWP.ValidationSample.ViewModels
                 c.Properties[nameof(c.Type)].Errors.Add("Type is mandatory.");
             }
 
+            // Compare two properties.
             if (c.FirstUseDate < c.ProductionDate)
             {
                 // Unfortunately errors have to be assigned to a property.
                 c.Properties[nameof(c.FirstUseDate)].Errors.Add("Date of first use should come after date of production.");
             }
 
-            // Debug.WriteLine((c.Properties[nameof(c.Mileage)] as Property<double>).OriginalValue);
-
+            // Compare with original value.
             if (c.Mileage < (c.Properties[nameof(c.Mileage)] as Property<double>).OriginalValue)
             {
                 c.Properties[nameof(c.Mileage)].Errors.Add("Turning back the mileage is illegal.");

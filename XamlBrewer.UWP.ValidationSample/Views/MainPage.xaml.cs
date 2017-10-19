@@ -42,6 +42,7 @@ namespace XamlBrewer.Uwp.ValidationSample
             //EditDialog.MinWidth = 700;
             //EditDialog.MaxWidth = 700;
             //EditDialog.Width = 700;
+
             var result = await EditDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
