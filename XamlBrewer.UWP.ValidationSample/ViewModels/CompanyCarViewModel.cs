@@ -4,9 +4,9 @@ using Template10.Validation;
 
 namespace XamlBrewer.UWP.ValidationSample.ViewModels
 {
-    public class CompanyCar : ValidatableModelBase
+    public class CompanyCarViewModel : ValidatableModelBase
     {
-        public CompanyCar(Models.CompanyCar model)
+        public CompanyCarViewModel(Models.CompanyCar model)
         {
             this.Brand = model.Brand;
             this.Type = model.Type;
@@ -17,49 +17,10 @@ namespace XamlBrewer.UWP.ValidationSample.ViewModels
             this.Emission = model.Emission;
             this.Mileage = model.Mileage;
             this.Driver = model.Driver;
-            this.Validator = that => { Val(that as CompanyCar); };
+            this.Validator = that => { Validation_Executed(that as CompanyCarViewModel); };
 
             // Not needed: ValidatableModelBase constructor does this.
             // this.PropertyChanged += (o, e) => Val(o as CompanyCar);
-        }
-
-        public void Val(CompanyCar c)
-        {
-            if (string.IsNullOrEmpty(c.Brand))
-            {
-                c.Properties[nameof(c.Brand)].Errors.Add("Brand is mandatory.");
-            }
-
-            if (string.IsNullOrEmpty(c.Type))
-            {
-                c.Properties[nameof(c.Type)].Errors.Add("Type is mandatory.");
-            }
-
-            // Compare two properties.
-            if (c.FirstUseDate < c.ProductionDate)
-            {
-                // Unfortunately errors have to be assigned to a property.
-                c.Properties[nameof(c.FirstUseDate)].Errors.Add("Date of first use should come after date of production.");
-            }
-
-            // Compare with original value.
-            if (c.Mileage < (c.Properties[nameof(c.Mileage)] as Property<double>).OriginalValue)
-            {
-                c.Properties[nameof(c.Mileage)].Errors.Add("Turning back the mileage is illegal.");
-            }
-        }
-
-        internal void Update(Models.CompanyCar model)
-        {
-            model.Brand = this.Brand;
-            model.Type = this.Type;
-            model.Body = this.Body;
-            model.ProductionDate = this.ProductionDate;
-            model.FirstUseDate = this.FirstUseDate;
-            model.PowerUnit = this.PowerUnit;
-            model.Emission = this.Emission;
-            model.Mileage = this.Mileage;
-            model.Driver = this.Driver;
         }
 
         public string Brand { get { return Read<string>(); } set { Write(value); } }
@@ -98,5 +59,44 @@ namespace XamlBrewer.UWP.ValidationSample.ViewModels
             "Hydrogen",
             "Petrol"
         };
+
+        internal void Update(Models.CompanyCar model)
+        {
+            model.Brand = this.Brand;
+            model.Type = this.Type;
+            model.Body = this.Body;
+            model.ProductionDate = this.ProductionDate;
+            model.FirstUseDate = this.FirstUseDate;
+            model.PowerUnit = this.PowerUnit;
+            model.Emission = this.Emission;
+            model.Mileage = this.Mileage;
+            model.Driver = this.Driver;
+        }
+
+        private void Validation_Executed(CompanyCarViewModel c)
+        {
+            if (string.IsNullOrEmpty(c.Brand))
+            {
+                c.Properties[nameof(c.Brand)].Errors.Add("Brand is mandatory.");
+            }
+
+            if (string.IsNullOrEmpty(c.Type))
+            {
+                c.Properties[nameof(c.Type)].Errors.Add("Type is mandatory.");
+            }
+
+            // Compare two properties.
+            if (c.FirstUseDate < c.ProductionDate)
+            {
+                // Unfortunately errors have to be assigned to a property.
+                c.Properties[nameof(c.FirstUseDate)].Errors.Add("Date of first use should come after date of production.");
+            }
+
+            // Compare with original value.
+            if (c.Mileage < (c.Properties[nameof(c.Mileage)] as Property<double>).OriginalValue)
+            {
+                c.Properties[nameof(c.Mileage)].Errors.Add("Turning back the mileage is illegal.");
+            }
+        }
     }
 }

@@ -76,7 +76,6 @@ namespace XamlBrewer.UWP.ValidationSample.Models
             set { SetProperty(ref _driver, value); }
         }
 
-        // This is soooo not MVVM ;-)
         public string BodyIcon => Mvvm.Services.Icon.GetIcon(Body + "Icon");
     }
 }

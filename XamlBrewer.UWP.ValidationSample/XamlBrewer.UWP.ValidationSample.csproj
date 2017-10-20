@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Extensions\ListView.AlternateColor.cs" />
+    <Compile Include="Models\CarFleet.cs" />
     <Compile Include="Models\CompanyCar.cs" />
     <Compile Include="Mvvm\BindableBase.cs" />
     <Compile Include="Mvvm\BooleanToValueConverter.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Services\Validation\ObservableDictionary.cs" />
     <Compile Include="Services\Validation\Property.cs" />
     <Compile Include="Services\Validation\ValidatableModelBase.cs" />
-    <Compile Include="ViewModels\CompanyCar.cs" />
+    <Compile Include="ViewModels\CompanyCarViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
