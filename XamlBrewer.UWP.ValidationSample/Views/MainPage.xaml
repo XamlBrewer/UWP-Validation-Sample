@@ -333,6 +333,13 @@
                               Margin="5 0 5 10"
                               Grid.Row="5"
                               Grid.Column="1" />
+                <Button Content="Reset"
+                        Click="ResetButton_Click"
+                        Margin="9 0 0 10"
+                        Width="170"
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        FontFamily="Segoe UI" />
                 <Grid Background="{StaticResource HamburgerForegroundBrush}"
                       Grid.Row="6"
                       Grid.Column="0"

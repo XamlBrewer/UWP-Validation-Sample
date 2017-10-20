@@ -39,9 +39,6 @@ namespace XamlBrewer.Uwp.ValidationSample
             companyCarViewModel.PropertyChanged += (obj, ev) => EditDialog.IsPrimaryButtonEnabled = companyCarViewModel.IsValid;
             companyCarViewModel.Validate();
             EditDialog.DataContext = companyCarViewModel;
-            //EditDialog.MinWidth = 700;
-            //EditDialog.MaxWidth = 700;
-            //EditDialog.Width = 700;
 
             var result = await EditDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
@@ -49,6 +46,11 @@ namespace XamlBrewer.Uwp.ValidationSample
                 // Update model
                 companyCarViewModel.Update(ViewModel.SelectedCompanyCar);
             }
+        }
+
+        private void ResetButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            (EditDialog.DataContext as CompanyCar).Revert();
         }
     }
 }
