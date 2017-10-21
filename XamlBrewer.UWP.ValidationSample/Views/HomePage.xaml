@@ -27,6 +27,30 @@
               Width="48"
               Margin="8"
               Stretch="Uniform" />
-
+        <Image Source="ms-appx:///Assets/car.png"
+               Opacity=".05"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Right"
+               Stretch="Uniform"
+               Margin="20"
+               Grid.Row="1" />
+        <TextBlock TextWrapping="WrapWholeWords"
+                   Foreground="{StaticResource PageForegroundBrush}"
+                   FontSize="20"
+                   Grid.Row="1"
+                   Margin="20"
+                   FontFamily="Segoe UI">
+            <Run>This app demonstrates ViewModel validation in UWP using the Template 10 root classes:</Run>
+            <LineBreak /><LineBreak />
+            <Run>- Individual field validation.</Run>
+            <LineBreak />
+            <Run>- Comparing two (or more) fields.</Run>
+            <LineBreak />
+            <Run>- Comparing a field's new value to its original value.</Run>
+            <LineBreak />
+            <Run>- Undoing all changes.</Run>
+            <LineBreak /><LineBreak />
+            <Run>Navigate to the Main Page and try it out yourself...</Run>            
+        </TextBlock>
     </Grid>
 </Page>
